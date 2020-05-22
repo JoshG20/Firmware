@@ -435,6 +435,7 @@ void RCInput::Run()
 					uint8_t st24_rssi, lost_count;
 
 					rc_updated = false;
+					st24_reset();
 
 					for (unsigned i = 0; i < (unsigned)newBytes; i++) {
 						/* set updated flag if one complete packet was parsed */
