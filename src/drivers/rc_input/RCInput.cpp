@@ -453,7 +453,7 @@ void RCInput::Run()
 							fill_rc_in(_raw_rc_count, _raw_rc_values, cycle_timestamp,
 								   false, false, frame_drops, st24_rssi);
 							_rc_scan_locked = true;
-							PX4_WARN("st24 not lost")
+							PX4_WARN("st24 not lost");
 
 						} else {
 							// if the lost count > 0 means that there is an RC loss
