@@ -43,6 +43,7 @@
 #include <stdio.h>
 #include "st24.h"
 #include "common_rc.h"
+#include <px4_log.h>
 
 const char *decode_states[] = {"UNSYNCED",
 			       "GOT_STX1",
