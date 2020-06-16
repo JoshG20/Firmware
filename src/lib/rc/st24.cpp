@@ -110,6 +110,7 @@ int st24_decode(uint8_t byte, uint8_t *rssi, uint8_t *lost_count, uint16_t *chan
 	case ST24_DECODE_STATE_UNSYNCED:
 		if (byte == ST24_STX1) {
 			_decode_state = ST24_DECODE_STATE_GOT_STX1;
+			PX4_WARN("st24 got stx1");
 
 		} else {
 			ret = 3;
@@ -120,6 +121,7 @@ int st24_decode(uint8_t byte, uint8_t *rssi, uint8_t *lost_count, uint16_t *chan
 	case ST24_DECODE_STATE_GOT_STX1:
 		if (byte == ST24_STX2) {
 			_decode_state = ST24_DECODE_STATE_GOT_STX2;
+			PX4_WARN("st24 got stx2");
 
 		} else {
 			_decode_state = ST24_DECODE_STATE_UNSYNCED;
@@ -195,6 +197,7 @@ int st24_decode(uint8_t byte, uint8_t *rssi, uint8_t *lost_count, uint16_t *chan
 						channels[chan_index] = (uint16_t)(channels[chan_index] * ST24_SCALE_FACTOR + .5f) + ST24_SCALE_OFFSET;
 						chan_index++;
 					}
+					PX4_WARN("st24 decoded chdata12");
 				}
 				break;
 
@@ -224,6 +227,7 @@ int st24_decode(uint8_t byte, uint8_t *rssi, uint8_t *lost_count, uint16_t *chan
 						channels[chan_index] = (uint16_t)(channels[chan_index] * ST24_SCALE_FACTOR + .5f) + ST24_SCALE_OFFSET;
 						chan_index++;
 					}
+					PX4_WARN("st24 decoded chdata24");
 				}
 				break;
 
@@ -242,6 +246,7 @@ int st24_decode(uint8_t byte, uint8_t *rssi, uint8_t *lost_count, uint16_t *chan
 
 		} else {
 			/* decoding failed */
+			PX4_WARN("st24 decoding failed");
 			ret = 4;
 		}
 
