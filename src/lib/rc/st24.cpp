@@ -43,7 +43,6 @@
 #include <stdio.h>
 #include "st24.h"
 #include "common_rc.h"
-#include <px4_log.h>
 
 const char *decode_states[] = {"UNSYNCED",
 			       "GOT_STX1",
@@ -111,7 +110,6 @@ int st24_decode(uint8_t byte, uint8_t *rssi, uint8_t *lost_count, uint16_t *chan
 	case ST24_DECODE_STATE_UNSYNCED:
 		if (byte == ST24_STX1) {
 			_decode_state = ST24_DECODE_STATE_GOT_STX1;
-			PX4_WARN("st24 got stx1");
 
 		} else {
 			ret = 3;
@@ -122,7 +120,6 @@ int st24_decode(uint8_t byte, uint8_t *rssi, uint8_t *lost_count, uint16_t *chan
 	case ST24_DECODE_STATE_GOT_STX1:
 		if (byte == ST24_STX2) {
 			_decode_state = ST24_DECODE_STATE_GOT_STX2;
-			PX4_WARN("st24 got stx2");
 
 		} else {
 			_decode_state = ST24_DECODE_STATE_UNSYNCED;
