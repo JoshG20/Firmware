@@ -189,7 +189,6 @@ int st24_decode(uint8_t byte, uint8_t *rssi, uint8_t *lost_count, uint16_t *chan
 						channels[chan_index] = (uint16_t)(channels[chan_index] * ST24_SCALE_FACTOR + .5f) + ST24_SCALE_OFFSET;
 						chan_index++;
 					}
-					PX4_WARN("st24 decoded chdata12");
 				}
 				break;
 
@@ -237,7 +236,6 @@ int st24_decode(uint8_t byte, uint8_t *rssi, uint8_t *lost_count, uint16_t *chan
 
 		} else {
 			/* decoding failed */
-			PX4_WARN("st24 decoding failed");
 			ret = 4;
 		}
 
